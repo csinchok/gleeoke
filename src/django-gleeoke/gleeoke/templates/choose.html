@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Which is the bigger travesty?</title>
+	<script type="text/javascript" src="/media/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="/media/js/flowplayer-3.2.4.min.js"></script>
+	<script type="text/javascript">
+		// install flowplayer into container
+		function addPlayer(elementId) {
+			$f(elementId, "/media/swf/flowplayer-3.2.5.swf", {
+				// fullscreen button not needed here
+				plugins: {
+					controls: {
+						fullscreen: false,
+						height: 30,
+						autoHide: false
+					}
+				},
+				clip: {
+					autoPlay: false,
+					// optional: when playback starts close the first audio playback
+					onBeforeBegin: function() {
+						$f("player").close();
+					}
+				}
+
+			});
+		}
+		
+		function vote(choice) {
+			if(choice == 'left') {
+				var badsong = $('#audio-right').attr('rel');
+				var worsesong = $('#audio-left').attr('rel');
+			} else {
+				var badsong = $('#audio-left').attr('rel');
+				var worsesong =	$('#audio-right').attr('rel');
+			}
+			$.post("/vote", { "badsong":badsong, 'worsesong':worsesong},
+				function(data){
+					$('#audio-left').attr('rel', data.left.short_id);
+					$('#audio-left').attr('href', data.left.url);
+					$f("audio-left", "/media/swf/flowplayer-3.2.5.swf").getClip(0).update({ url:data.left.url, autoPlay: false});
+					//$f("audio-left", "/media/swf/flowplayer-3.2.5.swf").pause();
+					$('div#left .metadata').html(data.left.name + ' &mdash; ' +  data.left.user_handle);
+					
+					$('#audio-right').attr('rel', data.right.short_id);
+					$('#audio-right').attr('href', data.right.url);
+					$f("audio-right", "/media/swf/flowplayer-3.2.5.swf").getClip(0).update({ url:data.right.url, autoPlay: false});
+					//$f("audio-right", "/media/swf/flowplayer-3.2.5.swf").pause();
+					$('div#right .metadata').html(data.right.name + ' &mdash; ' +  data.right.user_handle);
+			   }, "json");
+		}
+		$(document).ready(function() {
+			addPlayer("audio-left");
+			addPlayer("audio-right");
+		});
+	</script>
+	<link type="text/css" rel="stylesheet" href="/media/css/grid.css" media="screen,projection,print" />
+	<style type="text/css">
+		a {
+			outline: 0;
+		}
+		#header {
+			text-align: center;
+		}
+		.metadata {
+			text-align: center;
+		}
+		.vote  div.voteimage{
+			height: 246px;
+			width: 460px;
+			background: url("/media/img/kurt.png") no-repeat scroll 0 0 #fff;
+		}
+		a.vote:hover div.voteimage {
+			background: url("/media/img/ryan.png") no-repeat scroll 0 0 #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" class="container_12" >
+		<div id="header" class="grid_12">
+			<h1>Which is the bigger travesty?</h1>
+		</div>
+		<div id="body" class="grid_12">
+			<div id="left" class="grid_6 alpha">
+				<a class="vote" href="#left" onclick="javascript:vote('left');return false;"><div class="voteimage"></div></a>
+				<div class="audioplayer" id="audio-left" style="display:block;width:460px;height:30px;" href="{{left_song.url}}" rel="{{left_song.short_id}}"></div>
+				<h3 class="metadata">"{{left_song.name}}" &mdash; {{left_song.user_handle}}</h3>
+			</div>
+			<div id="right" class="grid_6 omega">
+				<a class="vote" href="#right" onclick="javascript:vote('right');return false;"><div class="voteimage"></div></a>
+				<div class="audioplayer" id="audio-right" style="display:block;width:460px;height:30px;" href="{{right_song.url}}" rel="{{right_song.short_id}}"></div>
+				<h3 class="metadata">"{{right_song.name}}" &mdash; {{right_song.user_handle}}</h3>
+			</div>
+		</div>
+		<div id="footer" class="grid_12">
+			This was made by and for glee sucks dot com
+		</div>
+	</div>
+</body>
+</html>
