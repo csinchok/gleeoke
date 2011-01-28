@@ -10,6 +10,7 @@ urlpatterns = patterns(
     '',
     (r'^admin/(.*)', admin.site.root),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    (r'^comments/', include('django.contrib.comments.urls')),
     (r'^', include('gleeoke.urls'))
 )
 

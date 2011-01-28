@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.admin',
+    'django.contrib.comments',
     'gleeoke'
 )
 
@@ -62,4 +63,4 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
 
-
+SITE_ID=1

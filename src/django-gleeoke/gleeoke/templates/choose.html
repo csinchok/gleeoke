@@ -4,6 +4,7 @@
 	<title>Which is the bigger travesty?</title>
 	<script type="text/javascript" src="/media/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="/media/js/flowplayer-3.2.4.min.js"></script>
+	<script type="text/javascript" src="/media/js/jquery.form.js"></script> 
 	<script type="text/javascript">
 		// install flowplayer into container
 		function addPlayer(elementId) {
@@ -40,19 +41,20 @@
 					$('#audio-left').attr('rel', data.left.short_id);
 					$('#audio-left').attr('href', data.left.url);
 					$f("audio-left", "/media/swf/flowplayer-3.2.5.swf").getClip(0).update({ url:data.left.url, autoPlay: false});
-					//$f("audio-left", "/media/swf/flowplayer-3.2.5.swf").pause();
 					$('div#left .metadata').html(data.left.name + ' &mdash; ' +  data.left.user_handle);
 					
 					$('#audio-right').attr('rel', data.right.short_id);
 					$('#audio-right').attr('href', data.right.url);
 					$f("audio-right", "/media/swf/flowplayer-3.2.5.swf").getClip(0).update({ url:data.right.url, autoPlay: false});
-					//$f("audio-right", "/media/swf/flowplayer-3.2.5.swf").pause();
 					$('div#right .metadata').html(data.right.name + ' &mdash; ' +  data.right.user_handle);
 			   }, "json");
 		}
 		$(document).ready(function() {
 			addPlayer("audio-left");
 			addPlayer("audio-right");
+			$('.comment_form > form').ajaxForm(function() {
+				alert("we done got yer comment!");
+			});
 		});
 	</script>
 	<link type="text/css" rel="stylesheet" href="/media/css/grid.css" media="screen,projection,print" />
@@ -74,6 +76,20 @@
 		a.vote:hover div.voteimage {
 			background: url("/media/img/ryan.png") no-repeat scroll 0 0 #fff;
 		}
+		div.comments {
+			display: none;
+		}
+		.comment_form p {
+			padding-bottom: 20px;
+		}
+		.comment_form label {
+			width: 100px;
+			float: left;
+			clear: left;
+		}
+		.comment_form input {
+			float: left;
+		}
 	</style>
 </head>
 <body>
@@ -86,11 +102,33 @@
 				<a class="vote" href="#left" onclick="javascript:vote('left');return false;"><div class="voteimage"></div></a>
 				<div class="audioplayer" id="audio-left" style="display:block;width:460px;height:30px;" href="{{left_song.url}}" rel="{{left_song.short_id}}"></div>
 				<h3 class="metadata">"{{left_song.name}}" &mdash; {{left_song.user_handle}}</h3>
+				<h3>Comments <a href="#" onclick="javascript:$(this).parent('h3').siblings('div.comments').slideToggle(); return false;">(Show)</a></h3>
+				<div class="comments">
+					{% load comments %}
+					
+					{% get_comment_list for left_song as comment_list %}
+					{% render_comment_list for left_song %}
+					
+					{% get_comment_form for left_song as form %}
+					<div class="comment_form">  
+						{% render_comment_form for left_song %}
+					</div>				
+				</div>
 			</div>
 			<div id="right" class="grid_6 omega">
 				<a class="vote" href="#right" onclick="javascript:vote('right');return false;"><div class="voteimage"></div></a>
 				<div class="audioplayer" id="audio-right" style="display:block;width:460px;height:30px;" href="{{right_song.url}}" rel="{{right_song.short_id}}"></div>
 				<h3 class="metadata">"{{right_song.name}}" &mdash; {{right_song.user_handle}}</h3>
+				<h3>Comments <a href="#" onclick="javascript:$(this).parent('h3').siblings('div.comments').slideToggle(); return false;">(Show)</a></h3>
+				<div class="comments">
+					{% get_comment_list for right_song as comment_list %}
+					{% render_comment_list for right_song %}
+					
+					{% get_comment_form for right_song as form %}
+					<div class="comment_form">  
+						{% render_comment_form for right_song %}
+					</div>				
+				</div>
 			</div>
 		</div>
 		<div id="footer" class="grid_12">

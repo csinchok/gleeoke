@@ -1,0 +1,9 @@
+{% load comments %}
+
+{% get_comment_list for left_song as comment_list %}
+{% render_comment_list for left_song %}
+
+{% get_comment_form for left_song as form %}
+<div class="comment_form">  
+	{% render_comment_form for left_song %}
+</div>
