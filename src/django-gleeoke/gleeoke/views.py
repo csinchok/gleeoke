@@ -16,6 +16,9 @@ def choose(request, template_name='choose.html'):
     right_song = Song.objects.exclude(pk=left_song.pk).order_by('?')[0]
     return render_to_response(template_name, {'left_song':left_song, 'right_song':right_song}, context_instance=RequestContext(request))
 
+def what_is_this(request, template_name='what-is-this.html'):
+    return render_to_response(template_name, context_instance=RequestContext(request))
+
 def vote(request):
     if request.method == 'POST' and 'badsong' in request.POST and 'worsesong' in request.POST:
         badsong = Song.objects.get(short_id=request.POST['badsong'])

@@ -22,6 +22,12 @@ a {
 #navigation a:hover {
     background: none repeat scroll 0 0 #92c938;
 }
+#about-link {
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+    text-decoration: none;
+    margin-left: 350px;
+}
 #pick {
     background: url('/media/img/pick.png') no-repeat scroll left top transparent;
     width: 504px;
@@ -86,8 +92,20 @@ div.comments {
     margin-bottom: 25px;
 }
 
+p a {
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+
+p {
+    color: #fff;
+}
+
 #footer {
-	padding-top: 25px;
+    border-top: 1px solid #fff;
+	margin-top: 25px;
+	padding-top: 10px;
 	text-align: left;
 	margin-bottom: 25px;
 	color: #fff;
