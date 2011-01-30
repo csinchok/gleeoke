@@ -1,10 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<title>Which is the bigger travesty?</title>
-	<script type="text/javascript" src="/media/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="/media/js/flowplayer-3.2.4.min.js"></script>
-	<script type="text/javascript" src="/media/js/jquery.form.js"></script> 
+{% extends "base.html" %}
+
+{% block extra_javascript %}
 	<script type="text/javascript">
 		// install flowplayer into container
 		function addPlayer(elementId) {
@@ -29,11 +25,13 @@
 				$("#" + elementId).addClass("setup");
 			}
 		}
-		
+	
 		$(document).ready(function() {
 		});
 	</script>
-	<link type="text/css" rel="stylesheet" href="/media/css/grid.css" media="screen,projection,print" />
+{% endblock %}
+
+{% block extra_css %}
 	<style type="text/css">
 		a {
 			outline: 0;
@@ -48,25 +46,18 @@
 			height:30px;
 		}
 	</style>
-</head>
-<body>
-	<div id="container" class="container_12" >
-		<div id="header" class="grid_12">
-			<h1>Top 10 Most Terrible Gleeokees</h1>
-		</div>
-		<div id="body" class="grid_12">
-			<ol class="grid_6 push_3 songlist" >
+{% endblock %}
+
+{% block body %}
+			<div class="grid_7 songlist" >
 			{% for song in songs %}
-				<li>
-					<h3 class="metadata">"{{song.name}}" &mdash; {{song.user_handle}}</h3>
-					<a onclick="addPlayer(this.id);return false;" class="audioplayer" id="audio-{{song.short_id}}" href="{{song.url}}" rel="{{lsong.short_id}}"></a>
-				</li>
+				<div class="ranking">
+					<img src="/media/img/numbers/{{forloop.counter}}.png" class="grid_1 alpha"/>
+					<div class="grid_6 omega">
+						<div class="songinfo"><i>"{{song.name}}"</i> &mdash; {{song.user_handle}}</div>
+						<a onclick="addPlayer(this.id);return false;" class="audioplayer" id="audio-{{song.short_id}}" href="{{song.url}}" rel="{{lsong.short_id}}"></a>
+					</div>
+				</div>
 			{% endfor %}
-			</ol>
-		</div>
-		<div id="footer" class="grid_12">
-			This was made by and for glee sucks dot com
-		</div>
-	</div>
-</body>
-</html>
+			</ul>
+{% endblock %}

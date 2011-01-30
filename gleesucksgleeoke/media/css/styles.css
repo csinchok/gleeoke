@@ -1,0 +1,86 @@
+body {
+	background: none repeat scroll 0 0 #88BB33;
+	font-family: Arial,Helvetica,sans-serif;
+}
+a {
+	outline: 0;
+}
+#header {
+	background:  url('/media/img/logo.png') no-repeat scroll left top transparent;
+	color: #fff;
+	height: 90px;
+	margin-top: 30px;
+	margin-bottom: 45px;
+}
+#navigation a {
+    text-decoration: none;
+    color: #fff;
+    border: 1px dotted #fff;
+    text-align: center;
+    margin-bottom: 5px;
+}
+#navigation a:hover {
+    background: none repeat scroll 0 0 #92c938;
+}
+.metadata {
+	text-align: center;
+}
+a.vote, a.vote:hover, a.vote:focus, a.vote:active {
+	text-decoration: none;
+}
+.vote  div.voteimage{
+    background: none no-repeat scroll 0 0 transparent;
+    font-size: 23px;
+	padding-top: 5px;
+    height: 36px;
+    text-align: center;
+    width: 460px;
+	color: #fff;
+	margin-bottom: 25px;
+	border: 1px dotted #fff;
+}
+a.vote:hover div.voteimage {
+	background: url('/media/img/glee_sayings.png') no-repeat scroll center top transparent;
+	text-indent: -8000px;
+}
+div.comments {
+	display: none;
+}
+.comment_form p {
+	padding-bottom: 20px;
+}
+.comment_form label {
+	width: 100px;
+	float: left;
+	clear: left;
+}
+.comment_form input {
+	float: left;
+}
+
+.songinfo {
+    width: 460px;
+    height: 30px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    border: 1px dotted #fff;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+
+.ranking {
+    height: 66px;
+    margin-bottom: 25px;
+}
+
+#footer {
+	padding-top: 25px;
+	text-align: left;
+	margin-bottom: 25px;
+	color: #fff;
+}
+#footer a, #footer a:hover, #footer a:focus, #footer a:active {
+	text-decoration: underline;
+	color: #fff;
+}

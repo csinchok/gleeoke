@@ -6,22 +6,26 @@
 	<script type="text/javascript" src="/media/js/flowplayer-3.2.4.min.js"></script>
 	<script type="text/javascript" src="/media/js/jquery.form.js"></script>
 	{% block extra_javascript %}
-	{% enblock %}
+	{% endblock %}
 	<link type="text/css" rel="stylesheet" href="/media/css/grid.css" media="screen,projection,print" />
+	<link type="text/css" rel="stylesheet" href="/media/css/styles.css" media="screen,projection,print" />
 	{% block extra_css %}
-	{% enblock %}
+	{% endblock %}
 </head>
 <body>
 	<div id="container" class="container_12" >
 		<div id="header" class="grid_12">
-			<h1>Which is the bigger travesty?</h1>
+			<div id="navigation" class="grid_4 alpha push_4">
+				<a href="/" class="grid_2">Vote</a>
+				<a href="/rankings" class="grid_2">Rankings</a>
+			</div>
 		</div>
 		<div id="body" class="grid_12">
 			{% block body %}
 			{% endblock %}
 		</div>
 		<div id="footer" class="grid_12">
-			This was made by and for glee sucks dot com
+			This was made by (and for) the gents at <a href="http://gleesucks.com">glee sucks dot com</a>
 		</div>
 	</div>
 </body>

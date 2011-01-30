@@ -11,7 +11,7 @@ eggs
 fake-eggs
 parts
 dist
-dxywebsite.zip
+gleeoke.zip
 .installed.cfg
 .mr.developer.cfg
 .hg
@@ -23,4 +23,4 @@ dxywebsite.zip
 .DS_Store
 .Trash
 var
-dxysolutionsdotcom.db
+gleeoke.db
