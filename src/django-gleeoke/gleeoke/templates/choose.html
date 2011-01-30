@@ -62,11 +62,16 @@
 			  	function () {
 					var random_image = Math.floor(Math.random()*17) * -36;
 			    	$(this).children('div.voteimage').css('background', "url('/media/img/glee_sayings.png') no-repeat scroll center " + random_image + "px transparent");
-					$("#pick").css("background", "url('/media/img/pick-" + $(this).parent('div').attr('id') + ".png') no-repeat scroll left top transparent");
+					if($(this).parent('div').attr('id') == 'left') {
+						$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left -153px transparent");
+					} else {
+						$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left -308px transparent");
+					}
+					
 				},
 			  	function () {
 			    	$(this).children('div.voteimage').css('background', "none no-repeat scroll 0 0 transparent");
-					$("#pick").css("background", "url('/media/img/pick.png') no-repeat scroll left top transparent");
+					$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left top transparent");
 			  	}
 			);
 		});
