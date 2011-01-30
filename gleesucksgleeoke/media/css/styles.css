@@ -24,9 +24,9 @@ a {
 }
 #about-link {
     color: #fff;
-    border-bottom: 1px dotted #fff;
+    border: 1px dotted #fff;
     text-decoration: none;
-    margin-left: 350px;
+    text-align: center;
 }
 #pick {
     background: url('/media/img/pick.png') no-repeat scroll left top transparent;

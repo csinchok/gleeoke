@@ -11,6 +11,19 @@
 	<link type="text/css" rel="stylesheet" href="/media/css/styles.css" media="screen,projection,print" />
 	{% block extra_css %}
 	{% endblock %}
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-21076277-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 </head>
 <body>
 	<div id="container" class="container_12" >
@@ -19,7 +32,7 @@
 				<a href="/" class="grid_2">Vote</a>
 				<a href="/rankings" class="grid_2">Rankings</a>
 			</div>
-			<a id="about-link" href="/what-is-this">What is this?</a>
+			<a id="about-link" class="grid_2 push_4 omega" href="/what-is-this">What is this?</a>
 		</div>
 		<div id="body" class="grid_12">
 			{% block body %}
