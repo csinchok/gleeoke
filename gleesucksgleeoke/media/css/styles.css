@@ -110,8 +110,16 @@ p {
 	text-align: left;
 	margin-bottom: 25px;
 	color: #fff;
+	height: 30px;
 }
 #footer a, #footer a:hover, #footer a:focus, #footer a:active {
-	text-decoration: underline;
+	text-decoration: none;
 	color: #fff;
+}
+#footer a {
+    border-bottom: 1px dotted #fff;
+}
+#footer span {
+    float: right;
+    text-align: right;
 }

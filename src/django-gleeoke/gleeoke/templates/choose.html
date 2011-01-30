@@ -30,26 +30,24 @@
 			if(choice == 'left') {
 				var badsong = $('#audio-right').attr('rel');
 				var worsesong = $('#audio-left').attr('rel');
+				$('#left div.voteimage').css('background', "url('/media/img/thanks.png') no-repeat scroll 0 0 transparent");
 			} else {
 				var badsong = $('#audio-left').attr('rel');
 				var worsesong =	$('#audio-right').attr('rel');
+				$('#right div.voteimage').css('background', "url('/media/img/thanks.png') no-repeat scroll 0 0 transparent");
 			}
 			$.post("/vote", { "badsong":badsong, 'worsesong':worsesong},
 				function(data){
 					$('#audio-left').attr('rel', data.left.short_id);
 					$('#audio-left').attr('href', data.left.url);
-					leftPlayer.pause();
-					leftPlayer.close();
+					leftPlayer.pause().seek(0).close();
 					leftPlayer.getClip(0).update({ url:data.left.url, autoPlay: false});
-					leftPlayer.seek(0);
 					$('div#left .voteimage').html('<i>' + data.left.name + '</i> &mdash; ' +  data.left.user_handle);
 					
 					$('#audio-right').attr('rel', data.right.short_id);
 					$('#audio-right').attr('href', data.right.url);
-					rightPlayer.pause();
-					rightPlayer.close();
+					rightPlayer.pause().seek(0).close();
 					rightPlayer.getClip(0).update({ url:data.right.url, autoPlay: false});
-					rightPlayer.seek(0);
 					$('div#right .voteimage').html('<i>' + data.right.name + '</i> &mdash; ' +  data.right.user_handle);
 			   }, "json");
 		}

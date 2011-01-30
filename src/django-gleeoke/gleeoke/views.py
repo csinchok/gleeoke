@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
 def choose(request, template_name='choose.html'):
+    print('choosing')
     left_song = Song.objects.order_by('?')[0]
     right_song = Song.objects.exclude(pk=left_song.pk).order_by('?')[0]
     return render_to_response(template_name, {'left_song':left_song, 'right_song':right_song}, context_instance=RequestContext(request))
