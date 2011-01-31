@@ -29,6 +29,10 @@ a {
     text-align: center;
 }
 
+a#about-link:hover {
+    background: none repeat scroll 0 0 #aad84d;
+}
+
 #pick {
     background: url('/media/img/pick-sprite.png') no-repeat scroll left top transparent;
     width: 504px;
