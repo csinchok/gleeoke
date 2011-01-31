@@ -30,6 +30,9 @@ class Song(models.Model):
 class Vote(models.Model):
     badsong = models.ForeignKey(Song, related_name='badvotes')
     worsesong = models.ForeignKey(Song, related_name='worsevotes')
+    
+    def __unicode__(self):
+        return '"%s" over "%s"' % (self.badsong, self.worsesong)
 
 class Gleek(models.Model):
     """Gleek"""
