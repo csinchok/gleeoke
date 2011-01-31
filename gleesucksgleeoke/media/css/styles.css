@@ -20,7 +20,7 @@ a {
     margin-bottom: 5px;
 }
 #navigation a:hover {
-    background: none repeat scroll 0 0 #a4e015;
+    background: none repeat scroll 0 0 #aad84d;
 }
 #about-link {
     color: #fff;
@@ -52,9 +52,11 @@ a.vote, a.vote:hover, a.vote:focus, a.vote:active {
 	color: #fff;
 	margin-bottom: 25px;
 	border: 1px dotted #fff;
+	overflow: hidden;
+	white-space: nowrap;
 }
 a.vote:hover div.voteimage {
-	background: none no-repeat scroll 0 0 #a4e015;
+	background: none no-repeat scroll 0 0 #aad84d;
 }
 div.audioplayer {
     display:block;
