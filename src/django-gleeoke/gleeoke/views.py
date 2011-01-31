@@ -25,10 +25,7 @@ def vote(request):
         badsong = Song.objects.get(short_id=request.POST['badsong'])
         worsesong = Song.objects.get(short_id=request.POST['worsesong'])
         
-        vote = Vote()
-        vote.badsong = badsong
-        vote.worsesong = worsesong
-        vote.save()
+        vote = Vote.objects.create(badsong=badsong,worsesong=worsesong)
         
         left_song = Song.objects.order_by('?')[0]
         right_song = Song.objects.exclude(pk=left_song.pk).order_by('?')[0]
@@ -50,6 +47,6 @@ def vote(request):
         return HttpResponse(json, mimetype='application/json')
         
 def rankings(request, template_name='rankings.html'):
-    songs = (Song.objects.exclude(badvotes=None) | Song.objects.exclude(worsevotes=None)).annotate(Count('worsevotes'), Count('badvotes')).order_by('worsevotes__count', '-badvotes__count')[:10]
+    songs = Song.objects.annotate(worsecount=Count('worsevotes'), badcount=Count('badvotes')).exclude(worsecount=0).order_by('-worsecount','badcount')[:10]
     return render_to_response(template_name, {'songs':songs}, context_instance=RequestContext(request))
     

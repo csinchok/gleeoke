@@ -4,6 +4,7 @@
 	<script type="text/javascript">
 		var leftPlayer;
 		var rightPlayer;
+		var random_image;
 		// install flowplayer into container
 		function addPlayer(elementId) {
 			return $f(elementId, "/media/swf/flowplayer-3.2.5.swf", {
@@ -30,11 +31,13 @@
 			if(choice == 'left') {
 				var badsong = $('#audio-right').attr('rel');
 				var worsesong = $('#audio-left').attr('rel');
-				$('#left div.voteimage').css('background', "url('/media/img/thanks.png') no-repeat scroll 0 0 transparent");
+				$('#left div.voteimage').css('background', "url('/media/img/glee_sayings.png') no-repeat scroll center " + random_image + "px transparent");
+				$('#left div.voteimage').css('text-indent', "-8000px");
 			} else {
 				var badsong = $('#audio-left').attr('rel');
 				var worsesong =	$('#audio-right').attr('rel');
-				$('#right div.voteimage').css('background', "url('/media/img/thanks.png') no-repeat scroll 0 0 transparent");
+				$('#right div.voteimage').css('background', "url('/media/img/glee_sayings.png') no-repeat scroll center " + random_image + "px transparent");
+				$('#right div.voteimage').css('text-indent', "-8000px");
 			}
 			$.post("/vote", { "badsong":badsong, 'worsesong':worsesong},
 				function(data){
@@ -49,26 +52,27 @@
 					rightPlayer.pause().seek(0).close();
 					rightPlayer.getClip(0).update({ url:data.right.url, autoPlay: false});
 					$('div#right .voteimage').html('<i>' + data.right.name + '</i> &mdash; ' +  data.right.user_handle);
+					
+					random_image = Math.floor(Math.random()*17) * -36;
 			   }, "json");
 		}
 		
 		$(document).ready(function() {
 			leftPlayer = addPlayer("audio-left");
 			rightPlayer = addPlayer("audio-right");
-			
+			random_image = Math.floor(Math.random()*17) * -36;
 			$("a.vote").hover(
 			  	function () {
-					var random_image = Math.floor(Math.random()*17) * -36;
-			    	$(this).children('div.voteimage').css('background', "url('/media/img/glee_sayings.png') no-repeat scroll center " + random_image + "px transparent");
+					$(this).children('div.voteimage').css('background', "none no-repeat scroll 0 0 #a4e015");
 					if($(this).parent('div').attr('id') == 'left') {
 						$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left -153px transparent");
 					} else {
 						$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left -308px transparent");
-					}
-					
+					}	
 				},
 			  	function () {
 			    	$(this).children('div.voteimage').css('background', "none no-repeat scroll 0 0 transparent");
+					$(this).children('div.voteimage').css('text-indent', "0");
 					$("#pick").css("background", "url('/media/img/pick-sprite.png') no-repeat scroll left top transparent");
 			  	}
 			);

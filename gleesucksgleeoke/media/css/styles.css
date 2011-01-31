@@ -20,7 +20,7 @@ a {
     margin-bottom: 5px;
 }
 #navigation a:hover {
-    background: none repeat scroll 0 0 #92c938;
+    background: none repeat scroll 0 0 #a4e015;
 }
 #about-link {
     color: #fff;
@@ -54,8 +54,7 @@ a.vote, a.vote:hover, a.vote:focus, a.vote:active {
 	border: 1px dotted #fff;
 }
 a.vote:hover div.voteimage {
-	background: url('/media/img/glee_sayings.png') no-repeat scroll center top transparent;
-	text-indent: -8000px;
+	background: none no-repeat scroll 0 0 #a4e015;
 }
 div.audioplayer {
     display:block;
