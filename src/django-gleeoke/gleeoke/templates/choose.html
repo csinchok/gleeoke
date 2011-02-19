@@ -46,12 +46,14 @@
 					leftPlayer.pause().seek(0).close();
 					leftPlayer.getClip(0).update({ url:data.left.url, autoPlay: false});
 					$('div#left .voteimage').html('<i>' + data.left.name + '</i> &mdash; ' +  data.left.user_handle);
+					$('div#left .external_link a').attr('href','http://glee.smule.com/myglee/song/solo/' + data.left.short_id);
 					
 					$('#audio-right').attr('rel', data.right.short_id);
 					$('#audio-right').attr('href', data.right.url);
 					rightPlayer.pause().seek(0).close();
 					rightPlayer.getClip(0).update({ url:data.right.url, autoPlay: false});
 					$('div#right .voteimage').html('<i>' + data.right.name + '</i> &mdash; ' +  data.right.user_handle);
+					$('div#right .external_link a').attr('href','http://glee.smule.com/myglee/song/solo/' + data.right.short_id);
 					
 					random_image = Math.floor(Math.random()*17) * -36;
 			   }, "json");
@@ -88,31 +90,11 @@
 			<div id="left" class="grid_6 alpha">
 				<a class="vote" href="#left" onclick="javascript:vote('left');return false;"><div class="voteimage"><i>"{{left_song.name}}"</i> &mdash; {{left_song.user_handle}}</div></a>
 				<div class="audioplayer" id="audio-left" href="{{left_song.url}}" rel="{{left_song.short_id}}"></div>
-				<!-- <h3>Comments <a href="#" onclick="javascript:$(this).parent('h3').siblings('div.comments').slideToggle(); return false;">(Show)</a></h3>
-				<div class="comments">
-					{% load comments %}
-					
-					{% get_comment_list for left_song as comment_list %}
-					{% render_comment_list for left_song %}
-					
-					{% get_comment_form for left_song as form %}
-					<div class="comment_form">  
-						{% render_comment_form for left_song %}
-					</div>				
-				</div> -->
+				<div class="external_link"><a target="_blank" href="http://glee.smule.com/myglee/song/solo/{{left_song.short_id}}">View on glee.smule.com</a></div>
 			</div>
 			<div id="right" class="grid_6 omega">
 				<a class="vote" href="#right" onclick="javascript:vote('right');return false;"><div class="voteimage"><i>"{{right_song.name}}"</i> &mdash; {{right_song.user_handle}}</div></a>
 				<div class="audioplayer" id="audio-right" href="{{right_song.url}}" rel="{{right_song.short_id}}"></div>
-				<!--<h3>Comments <a href="#" onclick="javascript:$(this).parent('h3').siblings('div.comments').slideToggle(); return false;">(Show)</a></h3>
-				<div class="comments">
-					{% get_comment_list for right_song as comment_list %}
-					{% render_comment_list for right_song %}
-					
-					{% get_comment_form for right_song as form %}
-					<div class="comment_form">  
-						{% render_comment_form for right_song %}
-					</div>				
-				</div> -->
+				<div class="external_link"><a target="_blank" href="http://glee.smule.com/myglee/song/solo/{{right_song.short_id}}">View on glee.smule.com</a></div>
 			</div>
 {% endblock %}
